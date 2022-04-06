@@ -4,7 +4,7 @@
  * @Autor: liushuhao
  * @Date: 2022-04-03 22:05:47
  * @LastEditors: liushuhao
- * @LastEditTime: 2022-04-04 04:27:54
+ * @LastEditTime: 2022-04-06 17:35:15
  */
 import React, {
   useState
@@ -25,13 +25,22 @@ function App() {
   //   data: ''
   // }
   const test = async() => {
-    const url = 'https://my-typescript-worker.liushuhao25009.workers.dev'
-    // const devUrl = 'http://127.0.0.1:8787/data'
-    // https://my-typescript-worker.liushuhao25009.workers.dev
+    let type = ''
+    let url = 'https://my-typescript-worker.liushuhao25009.workers.dev/data'
+    if (type === 'dev') {
+      url = 'http://127.0.0.1:8787/data'
+    }
     const data = await http({
       url: url,
       method: 'POST',
     });
+    const datas = [
+      {
+        data: 1
+      }
+    ]
+    console.log(JSON.stringify(datas), '9999')
+    console.log(JSON.parse(JSON.stringify(data)), '3333')
     setRes(res = data)
     console.log(data, 'data');
   };
@@ -40,7 +49,7 @@ function App() {
       <header className='App-header'>
         <Button type='primary' onClick={test}>
           测试
-        <span className="dataCss">{res.data}</span>
+        {/* <span className="dataCss">{res.data}</span> */}
         </Button>
       </header>
     </div>
